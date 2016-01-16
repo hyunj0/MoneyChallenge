@@ -7,28 +7,34 @@
     1 (week number) * 1 (month) = 1
     2 (week number) * 1 (month) = 2
     ...
+    52 (week number) * 12 (month) = 624
 */
 
+import java.text.DecimalFormat;
 import java.util.Calendar;
 
 public class MoneyChallenge {
 
     public static void main(String[] args) {
+
+        int weekNumber;
         int month;
-        int moneySaved = 0;
-        int amountToSave = 0;
+        int amountToSaveThisWeek;
+        int totalAmountSaved = 0;
 
         Calendar calendar = Calendar.getInstance();
+        DecimalFormat df = new DecimalFormat("$###,###");
 
-        for (int weekNumber = 1; weekNumber <= 52; weekNumber++) {
+        for (weekNumber = 1; weekNumber <= 52; weekNumber++) {
             System.out.println("Week " + weekNumber);
             calendar.set(Calendar.WEEK_OF_YEAR, weekNumber);
-            month = calendar.get(Calendar.MONTH)+1;
-            System.out.println("Beginning Balance " + moneySaved);
-            amountToSave = weekNumber * month;
-            System.out.println("Amount to Save " + amountToSave);
-            moneySaved = moneySaved + weekNumber * month;
-            System.out.println("Ending Balace " + moneySaved);
+            month = calendar.get(Calendar.MONTH) + 1;
+
+            amountToSaveThisWeek = weekNumber * month;
+            System.out.println("Save " + df.format(amountToSaveThisWeek) + " this week");
+
+            totalAmountSaved = totalAmountSaved + amountToSaveThisWeek;
+            System.out.println("Saved " + df.format(totalAmountSaved) + " thus far");
         }
     }
 
