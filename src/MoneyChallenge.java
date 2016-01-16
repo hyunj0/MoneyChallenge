@@ -1,7 +1,10 @@
+import java.text.DecimalFormat;
+import java.util.Calendar;
+
 /*
     My coworker thought of the idea.
-    How much could I save if I put x dollars in the bank where x is the week number?
-    Also, not just x, but x multiplied by the month it's in.
+    How much could I save if I put x dollars where x is the week number?
+    Not only save x, but x multiplied by the month it's in.
 
     For instance,
     1 (week number) * 1 (month) = 1
@@ -10,32 +13,25 @@
     52 (week number) * 12 (month) = 624
 */
 
-import java.text.DecimalFormat;
-import java.util.Calendar;
-
 public class MoneyChallenge {
-
     public static void main(String[] args) {
 
-        int weekNumber;
-        int month;
-        int amountToSaveThisWeek;
+        Calendar calendar = Calendar.getInstance();
+        DecimalFormat df = new DecimalFormat("$##,###");
         int totalAmountSaved = 0;
 
-        Calendar calendar = Calendar.getInstance();
-        DecimalFormat df = new DecimalFormat("$###,###");
-
-        for (weekNumber = 1; weekNumber <= 52; weekNumber++) {
-            System.out.println("Week " + weekNumber);
+        for (int weekNumber = 1; weekNumber <= 52; weekNumber++) {
             calendar.set(Calendar.WEEK_OF_YEAR, weekNumber);
-            month = calendar.get(Calendar.MONTH) + 1;
+            System.out.println("Week " + weekNumber);
 
-            amountToSaveThisWeek = weekNumber * month;
+            int month = calendar.get(Calendar.MONTH) + 1;
+            int amountToSaveThisWeek = weekNumber * month;
             System.out.println("Save " + df.format(amountToSaveThisWeek) + " this week");
 
-            totalAmountSaved = totalAmountSaved + amountToSaveThisWeek;
-            System.out.println("Saved " + df.format(totalAmountSaved) + " thus far");
+            totalAmountSaved += amountToSaveThisWeek;
+            System.out.println("Saved " + df.format(totalAmountSaved) + " in total");
         }
-    }
 
+        System.out.println("You will save " + df.format(totalAmountSaved) + " in one year!");
+    }
 }
