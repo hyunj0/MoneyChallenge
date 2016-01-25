@@ -1,6 +1,6 @@
 # Money Challenge
 
-Props to my coworker, Orlando
+Props to my coworker, <a href="https://github.com/orjoseph">Orlando</a>
 
 New Year's Resolution!! What could we do differently this year from last year?
 
